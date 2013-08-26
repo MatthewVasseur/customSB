@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     buyer = @order.buyers.build
+    3.times {snack = @order.snacks.build}
   end
 
   # GET /orders/1/edit
@@ -72,6 +73,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:destination, :price, buyers_attributes: [ :name, :email, :address])
+      params.require(:order).permit(:destination, :price, buyers_attributes: [ :name, :email, :address], snacks_attributes: [ :name, :price, :quantity])
     end
 end

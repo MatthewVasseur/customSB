@@ -16,20 +16,14 @@
     <%= f.text_field :destination %>
   </div>
   
-
+	<h3>Buyer</h3>
 	<%= f.fields_for :buyers do |builder| %>
-		<p>
-			<%= builder.label :name %>
-			<%= builder.text_field :name %>	
-		</p>
-		<p>
-			<%= builder.label :email %>
-			<%= builder.text_field :email %>	
-		</p>
-		<p>
-			<%= builder.label :address %>
-			<%= builder.text_field :address %>	
-		</p>
+		<%= render 'buyer_fields', :f => builder %>
+	<% end %>
+	
+	<h3>Snacks</h3>
+	<%= f.fields_for :snacks do |builder| %>
+		<%= render 'snack_fields', :f => builder %>
 	<% end %>
 	
   <div class="actions">
