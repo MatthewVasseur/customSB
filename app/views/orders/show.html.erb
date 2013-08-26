@@ -10,5 +10,13 @@
   <%= @order.price %>
 </p>
 
+<ol>
+	<% for buyer in @order.buyers do %>
+		<li><%= buyer.name %></li>
+		<li><%= buyer.email %></li>
+		<li><%= buyer.address %></li>
+	<% end %>
+</ol>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

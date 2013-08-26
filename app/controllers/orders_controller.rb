@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    buyer = @order.buyers.build
   end
 
   # GET /orders/1/edit
@@ -26,9 +27,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
+    @order.price = rand(0..10000) / 100.0
+    
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
         format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
@@ -69,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:destination, :price)
+      params.require(:order).permit(:destination, :price, buyers_attributes: [ :name, :email, :address])
     end
 end

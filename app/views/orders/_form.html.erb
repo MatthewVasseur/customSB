@@ -15,10 +15,23 @@
     <%= f.label :destination %><br>
     <%= f.text_field :destination %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
+  
+
+	<%= f.fields_for :buyers do |builder| %>
+		<p>
+			<%= builder.label :name %>
+			<%= builder.text_field :name %>	
+		</p>
+		<p>
+			<%= builder.label :email %>
+			<%= builder.text_field :email %>	
+		</p>
+		<p>
+			<%= builder.label :address %>
+			<%= builder.text_field :address %>	
+		</p>
+	<% end %>
+	
   <div class="actions">
     <%= f.submit %>
   </div>
